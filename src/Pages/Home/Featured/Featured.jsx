@@ -4,7 +4,7 @@ import featuredImg from '../../../assets/home/featured.jpg'
 import './featured.css'
 const Featured = () => {
     return (
-        <div className='featured-img  text-white  '>
+        <div className='featured-img bg-fixed text-white  '>
             <div className=' pt-4 h-fit bg-gradient-to-r from-[#151515] to-[#rgba(21, 21, 21, 0.70)]'>
             <SectionTitle className='mt-8'  subHeading={'Featured Item'} heading={'From Featured Menu'}></SectionTitle>
             <div className='flex items-center justify-center gap-8 '>
@@ -15,6 +15,7 @@ const Featured = () => {
                     <p>March 23,2024</p>
                     <p className='uppercase'>Where Can i get Some?</p>
                     <p>Fast food is a convenient option for many people due to its quick service and readily available meals. However, frequent consumption of fast food can contribute to health problems such as obesity and heart disease.</p>
+                    <button className='btn btn-outline  border-0 border-b-2 text-white mt-4 '>Order Now</button>
                 </div>
             </div>
             </div>
