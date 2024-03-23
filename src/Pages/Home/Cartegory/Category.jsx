@@ -26,6 +26,7 @@ const Category = () => {
       pagination={{
         clickable: true,
       }}
+    
       modules={[Pagination]}
       className='mySwiper mb-12 '
     >
