@@ -1,9 +1,10 @@
 import React from 'react';
+import './chefService.css'
 
 const ChefService = () => {
    
     return (
-    <div className='bg-chef-service flex items-center justify-center bg-no-repeat  h-[572px]'> 
+    <div className=' chef-img flex items-center justify-center bg-no-repeat  h-[572px]'> 
            <div className=' bg-white w-11/12  flex flex-col justify-center items-center md:h-[333px] text-center mx-auto'>
             <div  className=' w-10/12 '>
             <h1 className='uppercase text-4xl font-bold '>Bistro Boss</h1>

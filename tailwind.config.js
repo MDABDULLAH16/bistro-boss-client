@@ -3,9 +3,7 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      backgroundImage: {
-        'chef-service': "url('./src/assets/home/chef-service.jpg')",
-      },
+      
     },
   },
 
