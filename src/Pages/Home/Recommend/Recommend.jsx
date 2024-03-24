@@ -12,7 +12,7 @@ const Recommend = () => {
         })
     },[])
     return (
-        <section>
+        <section className='my-16'>
             <SectionTitle
             subHeading={'Should Try'}
             heading={'Chef recommends'}
