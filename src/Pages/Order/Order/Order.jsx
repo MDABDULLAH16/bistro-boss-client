@@ -8,7 +8,7 @@ import useMenu from '../../../hooks/useMenu/useMenu';
 import FoodCard from '../FoodCard/FoodCard';
 import { useParams } from 'react-router-dom';
 const Order = () => {
-    const categories = ['salad','pizza','soup','desserts','drinks']
+    const categories = ['salad','pizza','soup','desserts','drinks','offered']
     const { category } = useParams()
     const initialIndex = categories.indexOf(category)
     const [tabIndex, setTabIndex] = useState(initialIndex);
@@ -19,6 +19,7 @@ const Order = () => {
      const pizza = menu.filter((item) => item.category === "pizza");
      const salad = menu.filter((item) => item.category === "salad");
      const soup = menu.filter((item) => item.category === "soup");
+     const offered = menu.filter((item) => item.category === "offered");
     return (
       <div>
         <Helmet>
@@ -32,6 +33,7 @@ const Order = () => {
             <Tab>SOUPS</Tab>
             <Tab>DESSERTS</Tab>
             <Tab>DRINKS</Tab>
+            <Tab>OFFERED</Tab>
           </TabList>
           <TabPanel>
            <FoodCard items={salad}></FoodCard>
@@ -47,6 +49,9 @@ const Order = () => {
           </TabPanel>
                 <TabPanel>
                     <FoodCard items={drinks}></FoodCard>
+          </TabPanel>
+                <TabPanel>
+                    <FoodCard items={offered}></FoodCard>
           </TabPanel>
         </Tabs>
       </div>
