@@ -5,14 +5,17 @@ const Navbar = () => {
   const navLinkOption = (
     <div className="flex font-bold text-2xl">
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
-      
+
       <li>
-       <Link to='/menu'>Menu</Link>
+        <Link to="/menu">Menu</Link>
       </li>
       <li>
-       <Link to='/order/salad'>Oder Food</Link>
+        <Link to="/order/salad">Oder Food</Link>
+      </li>
+      <li>
+        <Link to="/login">Login</Link>
       </li>
     </div>
   );
