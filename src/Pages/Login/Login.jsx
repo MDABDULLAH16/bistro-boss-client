@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
-  LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProvider";
+import loginImg from "../../assets/others/authentication2.png";
+import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser, setUser } = useContext(AuthContext);
@@ -14,7 +16,8 @@ const Login = () => {
   const [disabled, setDisabled] = useState(true);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -28,7 +31,13 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        // setUser(loggedUser);
+        setUser(loggedUser);
+        Swal.fire({
+          title: "Goog Job!",
+          text: "User Login Successfully",
+          icon: "success",
+        });
+        navigate(location?.state ? location?.state : "/");
       })
       .catch((error) => {
         console.log(error.message);
@@ -39,7 +48,7 @@ const Login = () => {
     if (validateCaptcha(user_captcha_value)) {
       setDisabled(false);
       setSuccess("Captcha is matched");
-      captchaRef.current.value = "";
+      // captchaRef.current.value = "";
     } else {
       setError("Captcha is wrong!!");
       setDisabled(true);
@@ -47,13 +56,14 @@ const Login = () => {
     }
   };
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-img">
+      <Helmet>
+        <title>Bistro Boss | Login</title>
+      </Helmet>
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-        </div>
-        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card shrink-0 w-full max-w-sm ">
           <form onSubmit={handleLogin} className="card-body">
+            <h1 className="text-4xl font-bold">Login now!</h1>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -110,7 +120,7 @@ const Login = () => {
               </button>
             </div>
             <div className="form-control ">
-              <button disabled={disabled} className="btn  btn-primary">
+              <button disabled={disabled} className="btn bg-[#D1A054] ">
                 Login
               </button>
             </div>
@@ -123,6 +133,9 @@ const Login = () => {
               </small>
             </p>
           </form>
+        </div>
+        <div className="text-center sm:hidden lg:block lg:text-left">
+          <img src={loginImg} alt="" />
         </div>
       </div>
     </div>

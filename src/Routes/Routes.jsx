@@ -5,22 +5,36 @@ import Menu from "../Pages/Menu/Menu/Menu";
 import Order from "../Pages/Order/Order/Order";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Secret from "../Pages/Shared/Secret/Secret";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    children: [{ path: "/", element: <Home></Home> }, 
-    {
-      path:'/menu',element: <Menu></Menu>
+    children: [
+      { path: "/", element: <Home></Home> },
+      {
+        path: "/menu",
+        element: <Menu></Menu>,
       },
-      { path: '/order/:category', element: <Order></Order> },
       {
-      path:'/login',element:<Login></Login>
-    },
+        path: "/secret",
+        element: (
+          <PrivateRoute>
+            <Secret></Secret>
+          </PrivateRoute>
+        ),
+      },
+      { path: "/order/:category", element: <Order></Order> },
       {
-      path:'/register',element:<Register></Register>
-    }
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
     ],
   },
 ]);
