@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import profileImg from "../../../assets/others/profile.png";
 import { FaCartShopping } from "react-icons/fa6";
+import useCart from "../../../hooks/useCart/useCart";
 const Navbar = () => {
   const { user, logOut, loading } = useContext(AuthContext);
+  const [cart] = useCart();
   // console.log(user?.photoURL, user?.displayName);
   if (loading) {
     return <progress className="progress w-full"></progress>;
@@ -34,7 +36,7 @@ const Navbar = () => {
         <li>
           <button className="btn">
             <FaCartShopping className="text-2xl mr-4"></FaCartShopping>
-            <div className="badge badge-secondary">+0</div>
+            <div className="badge badge-secondary">{cart.length}</div>
           </button>
         </li>
       </li>

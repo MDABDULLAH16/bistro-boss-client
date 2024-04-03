@@ -10,10 +10,10 @@ import { AuthContext } from "./../../../providers/AuthProvider";
 
 import OrderTab from "./../OrderTab/OrderTab";
 const Order = () => {
-  const { loading } = useContext(AuthContext);
-  if (loading) {
-    return <progress className="w-full progress"></progress>;
-  }
+  // const { loading } = useContext(AuthContext);
+  // if (loading) {
+  //   return <progress className="w-full progress"></progress>;
+  // }
   const categories = [
     "salad",
     "pizza",
