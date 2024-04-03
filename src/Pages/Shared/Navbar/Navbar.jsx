@@ -47,7 +47,7 @@ const Navbar = () => {
     <div className="flex items-center font-bold  list-none">
       {/* <li className="mr-4">{user?.displayName}</li> */}
       <li className="">
-        {user ? (
+        {user?.photoURL ? (
           <img
             className="w-16 h-16 rounded-full mr-4"
             src={user?.photoURL}
