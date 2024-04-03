@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import profileImg from "../../../assets/others/profile.png";
+import { FaCartShopping } from "react-icons/fa6";
 const Navbar = () => {
   const { user, logOut, loading } = useContext(AuthContext);
-  console.log(user?.photoURL, user?.displayName);
+  // console.log(user?.photoURL, user?.displayName);
   if (loading) {
     return <progress className="progress w-full"></progress>;
   }
@@ -20,7 +21,6 @@ const Navbar = () => {
       <li>
         <Link to="/">Home</Link>
       </li>
-
       <li>
         <Link to="/menu">Menu</Link>
       </li>
@@ -30,12 +30,20 @@ const Navbar = () => {
       <li>
         <Link to="/secret">Secret</Link>
       </li>
+      <li>
+        <li>
+          <button className="btn">
+            <FaCartShopping className="text-2xl mr-4"></FaCartShopping>
+            <div className="badge badge-secondary">+0</div>
+          </button>
+        </li>
+      </li>
     </div>
   );
 
   const userBtn = (
-    <div className="flex items-center font-bold text-2xl list-none">
-      <li className="mr-4">{user?.displayName}</li>
+    <div className="flex items-center font-bold  list-none">
+      {/* <li className="mr-4">{user?.displayName}</li> */}
       <li className="">
         {user ? (
           <img

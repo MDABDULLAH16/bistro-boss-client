@@ -18,6 +18,7 @@ const Login = () => {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -37,7 +38,7 @@ const Login = () => {
           text: "User Login Successfully",
           icon: "success",
         });
-        navigate(location?.state ? location?.state : "/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
