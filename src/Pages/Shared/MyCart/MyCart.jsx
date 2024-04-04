@@ -2,10 +2,43 @@ import React from "react";
 import useCart from "../../../hooks/useCart/useCart";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { FaTrashAlt } from "react-icons/fa";
+import useAxiosSecure from "../../../hooks/useAxiosSecure/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const axiosSecure = useAxiosSecure();
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/carts/${id}`)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      }
+    });
+  };
   return (
     <div className="   mt-0">
       <SectionTitle
@@ -61,7 +94,10 @@ const MyCart = () => {
                     <td>{item.name}</td>
                     <td>{item.price}</td>
                     <th>
-                      <button className="btn btn-ghost btn-lg bg-red-400 text-white ">
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="btn btn-ghost btn-lg bg-red-400 text-white "
+                      >
                         <FaTrashAlt className="text-2xl"></FaTrashAlt>{" "}
                       </button>
                     </th>
