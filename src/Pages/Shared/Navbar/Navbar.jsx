@@ -32,12 +32,17 @@ const Navbar = () => {
       <li>
         <Link to="/secret">Secret</Link>
       </li>
+      {/* <li>
+        <Link to="/dashboard">Dashboard</Link>
+      </li> */}
       <li>
         <li>
-          <button className="btn">
-            <FaCartShopping className="text-2xl mr-4"></FaCartShopping>
-            <div className="badge badge-secondary">{cart.length}</div>
-          </button>
+          <Link to="/dashboard/cart">
+            <button className="btn">
+              <FaCartShopping className="text-2xl mr-4"></FaCartShopping>
+              <div className="badge badge-secondary">{cart.length}</div>
+            </button>
+          </Link>
         </li>
       </li>
     </div>
